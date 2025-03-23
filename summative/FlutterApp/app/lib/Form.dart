@@ -57,7 +57,7 @@ class _PredictionFormScreenState extends State<PredictionFormScreen> {
 
       try {
         final response = await http.post(
-          Uri.parse('https://modeltraining-summative.onrender.com/predict'),
+          Uri.parse('https://linear-regression-model-f74t.onrender.com/predict'),
           headers: {'Content-Type': 'application/json'},
           body: jsonEncode({
             'healthcare_access': double.parse(_healthcareAccessController.text),
