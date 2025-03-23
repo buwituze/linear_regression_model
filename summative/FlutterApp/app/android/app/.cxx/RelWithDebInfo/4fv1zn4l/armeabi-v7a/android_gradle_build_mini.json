@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "C:\\Users\\HP\\OneDrive\\Documents\\flutter\\src\\flutter\\packages\\flutter_tools\\gradle\\src\\main\\groovy\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "C:\\Users\\HP\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+      "-C",
+      "C:\\Users\\HP\\OneDrive\\Documents\\linear_regression_model\\summative\\FlutterApp\\app\\android\\app\\.cxx\\RelWithDebInfo\\4fv1zn4l\\armeabi-v7a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "C:\\Users\\HP\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+    "-C",
+    "C:\\Users\\HP\\OneDrive\\Documents\\linear_regression_model\\summative\\FlutterApp\\app\\android\\app\\.cxx\\RelWithDebInfo\\4fv1zn4l\\armeabi-v7a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}
