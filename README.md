@@ -17,7 +17,7 @@ This project implements a machine learning system to predict disease prevalence 
 
 3. Flutter Mobile Application
 
-Demo Video: https://youtu.be/Bx0SJsRTIA0
+Demo Video (Please, excuse the low sound quality): https://youtu.be/Bx0SJsRTIA0
 
 ### Installation Steps
 
