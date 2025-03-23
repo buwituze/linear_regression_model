@@ -6,11 +6,16 @@ import numpy as np
 import uvicorn
 import os
 
-PARENT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MODEL_PATH = os.path.join(PARENT_DIR, "best_model.pkl")
-SCALER_PATH = os.path.join(PARENT_DIR, "scaler.pkl")
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_DIR = os.path.join(CURRENT_DIR, "../linear_regression")
 
-# initialzing a FastAPI app
+MODEL_PATH = os.path.join(MODEL_DIR, "best_model.pkl")
+SCALER_PATH = os.path.join(MODEL_DIR, "scaler.pkl")
+
+MODEL_PATH = os.path.normpath(MODEL_PATH)
+SCALER_PATH = os.path.normpath(SCALER_PATH)
+
+# initializing a FastAPI app
 app = FastAPI(
     title="Disease Prevalence Prediction API",
     description="API for predicting disease prevalence rates based on health indicators",
@@ -26,7 +31,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Defining input data model with Pydantic
+# Defining input data with Pydantic and making them strict and practical
 class PredictionInput(BaseModel):
     healthcare_access: float = Field(..., ge=0, le=100, description="Healthcare Access (%)")
     doctors_per_1000: float = Field(..., ge=0, le=20, description="Doctors per 1000 people")
@@ -47,7 +52,6 @@ class PredictionInput(BaseModel):
             raise ValueError('Education Index must be between 0 and 1')
         return v
 
-# Define response model
 class PredictionOutput(BaseModel):
     prevalence_rate: float = Field(..., description="Predicted Disease Prevalence Rate (%)")
 
@@ -56,15 +60,19 @@ try:
     print(f"Loading model from: {MODEL_PATH}")
     print(f"Loading scaler from: {SCALER_PATH}")
     
+    if not os.path.exists(MODEL_PATH):
+        raise FileNotFoundError(f"Model file not found at {MODEL_PATH}")
+    if not os.path.exists(SCALER_PATH):
+        raise FileNotFoundError(f"Scaler file not found at {SCALER_PATH}")
+
     model = joblib.load(MODEL_PATH)
     scaler = joblib.load(SCALER_PATH)
     
     print("Model and scaler loaded successfully")
-except FileNotFoundError as e:
+except Exception as e:
     model = None
     scaler = None
-    print(f"Error: {e}")
-    print("Warning: Model or scaler file not found. Please check the file paths.")
+    print(f"Error loading model/scaler: {e}")
 
 @app.post("/predict", response_model=PredictionOutput)
 def predict(data: PredictionInput):
@@ -110,4 +118,4 @@ def read_root():
     }
 
 if __name__ == "__main__":
-    uvicorn.run("ModelAPI:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("prediction:app", host="0.0.0.0", port=8000, reload=True)
