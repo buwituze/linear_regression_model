@@ -17,11 +17,12 @@ This project implements a machine learning system to predict disease prevalence 
 
 3. Flutter Mobile Application
 
-Demo Video:
+Demo Video: https://youtu.be/Bx0SJsRTIA0
 
 ### Installation Steps
 
-- Clone the repository: clone https://github.com/your-username/disease-prevalence-prediction.git
+- Clone the repository: clone https://github.com/buwituze/linear_regression_model.git
+- To test the model, first extract the \*\*Global Health Statistics\*\* from the zipped folder
 - Navigate into the frontend dir: cd summative\FlutterApp\app
 - Install dependencies: flutter pub get
 - Run the app: flutter run
@@ -30,10 +31,10 @@ Demo Video:
 
 - Fill in all required fields with appropriate values (Follow the provided hints for accuracy and practicalty):
 
-    - Healthcare System section (access percentages, doctors per 1000, etc.)
-    - Socioeconomic Factors (income, education index, etc.)
-    - Disease Factors (population affected, treatment costs, etc.)
-    - Demographics & Treatment information
+  - Healthcare System section (access percentages, doctors per 1000, etc.)
+  - Socioeconomic Factors (income, education index, etc.)
+  - Disease Factors (population affected, treatment costs, etc.)
+  - Demographics & Treatment information
 
 - Click the "PREDICT" button to send data to the API
 - View the predicted disease prevalence rate at the bottom of the screen
